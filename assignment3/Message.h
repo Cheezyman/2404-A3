@@ -4,7 +4,8 @@
 
 #include <string>
 
-class Message {
+class Message
+{
 private:
     std::string sender;   // The ID of the sender
     std::string receiver; // The ID of the receiver

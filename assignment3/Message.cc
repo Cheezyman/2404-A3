@@ -7,17 +7,20 @@ Message::Message(const std::string &sender, const std::string &receiver, const s
     : sender(sender), receiver(receiver), message(message) {}
 
 // Getter for the sender
-std::string Message::getSender() const {
+std::string Message::getSender() const
+{
     return sender;
 }
 
 // Getter for the receiver
-std::string Message::getReceiver() const {
+std::string Message::getReceiver() const
+{
     return receiver;
 }
 
 // Print function
-void Message::print() const {
+void Message::print() const
+{
     std::cout << "From: " << sender << std::endl;
     std::cout << "To: " << receiver << std::endl;
     std::cout << "Message: " << message << std::endl;

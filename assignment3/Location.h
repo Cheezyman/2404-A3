@@ -6,18 +6,19 @@
 
 using namespace std;
 
-class Location {
-    public:
-        Location(int x=0, int y=0);
-        void setLocation(int x, int y);
-        int getX() const{return x;}
-        int getY() const{return y;}
-        int getDistance(const Location& l) const;
-        void print() const;
-        int x, y;
-    private:
-        string street(int) const;
-        
+class Location
+{
+public:
+    Location(int x = 0, int y = 0);
+    void setLocation(int x, int y);
+    int getX() const { return x; }
+    int getY() const { return y; }
+    int getDistance(const Location &l) const;
+    void print() const;
+    int x, y;
+
+private:
+    string street(int) const;
 };
 
 #endif
