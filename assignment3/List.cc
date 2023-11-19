@@ -1,10 +1,8 @@
 #include "List.h"
 #include <iostream>
 
-// good
 List::List() : head(nullptr), tail(nullptr), size(0) {}
 
-// good
 List::~List()
 {
     while (!isEmpty())
@@ -13,15 +11,11 @@ List::~List()
     }
 }
 
-// managing nodes in linked list
-
-// good
 bool List::isEmpty() const
 {
     return head == nullptr;
 }
 
-// good
 int List::getSize() const
 {
     return size;
@@ -52,7 +46,6 @@ Message *List::removeFirst()
     return message;
 }
 
-// good
 void List::add(Message *message)
 {
     Node *newNode = new Node(message);
@@ -69,7 +62,6 @@ void List::add(Message *message)
     size++;
 }
 
-// good
 void List::print() const
 {
     Node *current = head;
@@ -80,9 +72,6 @@ void List::print() const
     }
 }
 
-// Accessing info form linked list
-
-// good
 void List::getMessagesWith(const std::string &id, List &outputList)
 {
     Node *current = head;
@@ -96,7 +85,6 @@ void List::getMessagesWith(const std::string &id, List &outputList)
     }
 }
 
-// good
 void List::getMessagesWith(const std::string &id1, const std::string &id2, List &outputList)
 {
     Node *current = head;
@@ -111,7 +99,6 @@ void List::getMessagesWith(const std::string &id1, const std::string &id2, List 
     }
 }
 
-// good
 void List::removeMessagesWith(const std::string &id, List &outputList)
 {
     Node *current = head;

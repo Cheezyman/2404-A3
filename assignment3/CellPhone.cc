@@ -8,7 +8,6 @@ int CellPhone::nextId = 1;
 CellPhone::CellPhone(std::string number, const Location &loc)
     : Entity(CellPhone::code, nextId++, loc), number(number)
 {
-    // All initialization is done in the initializer list
 }
 
 // resetId static member function implementation
@@ -23,7 +22,6 @@ void CellPhone::setLocation(const Location &loc)
     location = loc;
 }
 
-// help
 //  getMessagesWith member function implementation
 void CellPhone::getMessagesWith(const std::string &id, List &messages)
 {

@@ -29,7 +29,7 @@ void Entity::addMessage(const Message &m)
 // Get the number of messages
 int Entity::getNumMessages() const
 {
-    return messageHistory.getSize(); // Assuming 'getSize' returns the number of elements
+    return messageHistory.getSize();
 }
 
 // Compare with another entity's ID
@@ -43,6 +43,6 @@ void Entity::print() const
 {
     std::cout << "ID: " << id << std::endl;
     std::cout << "Location: ";
-    location.print(); // Assuming Location class has a print method
+    location.print();
     std::cout << "Number of Messages: " << getNumMessages() << std::endl;
 }

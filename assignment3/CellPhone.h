@@ -32,7 +32,7 @@ public:
     // Override the print function
     void print() const;
 
-    // Destructor (if needed)
+    // Destructor
     ~CellPhone();
 };
 
