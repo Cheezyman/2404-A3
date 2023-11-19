@@ -76,7 +76,7 @@ void Network::moveCellPhone(const std::string &id, const Location &location)
 }
 
 // Get Message History
-void Network::getMessageHistory(const std::string &id, const List **messages)
+bool Network::getMessageHistory(const std::string &id, const List **messages)
 {
     Entity *entity = findCellPhone(id);
     if (!entity)
@@ -87,10 +87,12 @@ void Network::getMessageHistory(const std::string &id, const List **messages)
     if (entity)
     {
         *messages = entity->getMessageHistory();
+        return true;
     }
     else
     {
         std::cout << "No entity found with ID " << id << std::endl;
+        return false;
     }
 }
 

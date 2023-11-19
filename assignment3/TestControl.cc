@@ -473,7 +473,7 @@ int TestControl::testMoveCellPhone(){
     cout<<"Print towers"<<endl;
     network.printTowers();
 
-    cout<<"Verify that there are 4 messages in T2 and T5, and 0 messages in T2, T3, T4"<<endl;
+    cout<<"Verify that there are 4 messages in T2 and T5, and 0 messages in T1, T3, T4"<<endl;
 
     tester.pressEnterToContinue();
 

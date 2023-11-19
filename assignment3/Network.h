@@ -28,7 +28,7 @@ public:
     void addTower(const Location &location);
     void routeMessage(const Message &message);
     void moveCellPhone(const std::string &id, const Location &location);
-    void getMessageHistory(const std::string &id, const List **messages);
+    bool getMessageHistory(const std::string &id, const List **messages);
     void getMessagesWith(const std::string &id1, const std::string &id2, List &outputList);
     void resetIds();
     void printTowers() const;
