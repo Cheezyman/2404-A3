@@ -1,86 +1,75 @@
 #include "List.h"
 #include <iostream>
 
-// Destructor
+// good
+List::List() : head(nullptr), tail(nullptr), size(0) {}
+
+// good
 List::~List()
 {
-    Node *current = head;
-    while (current != nullptr)
+    while (!isEmpty())
     {
-        Node *next = current->next;
-        delete current->data; // Assuming ownership of messages
-        delete current;
-        current = next;
-    }
-    head = tail = nullptr;
-    size = 0;
-}
-
-// Copy constructor
-List::List(const List &other) : head(nullptr), tail(nullptr), size(0)
-{
-    Node *current = other.head;
-    while (current != nullptr)
-    {
-        add(new Message(*(current->data))); // Deep copy of the message
-        current = current->next;
+        removeFirst();
     }
 }
 
-// Copy assignment operator
-List &List::operator=(const List &other)
+// managing nodes in linked list
+
+// good
+bool List::isEmpty() const
 {
-    if (this != &other)
+    return head == nullptr;
+}
+
+// good
+int List::getSize() const
+{
+    return size;
+}
+
+Message *List::removeFirst()
+{
+    if (size = 0)
     {
-        List temp(other);
-        std::swap(head, temp.head);
-        std::swap(tail, temp.tail);
-        std::swap(size, temp.size);
+        return nullptr;
     }
-    return *this;
-}
+    Node *temp = head;
+    Message *message = temp->data;
 
-// Move constructor
-List::List(List &&other) noexcept
-    : head(other.head), tail(other.tail), size(other.size)
-{
-    other.head = other.tail = nullptr;
-    other.size = 0;
-}
-
-// Move assignment operator
-List &List::operator=(List &&other) noexcept
-{
-    if (this != &other)
+    if (head->next == nullptr)
     {
-        delete this;
-        head = other.head;
-        tail = other.tail;
-        size = other.size;
-
-        other.head = other.tail = nullptr;
-        other.size = 0;
-    }
-    return *this;
-}
-
-// Add message to the list
-void List::add(Message *message)
-{
-    Node *newNode = new Node(message, nullptr);
-    if (tail != nullptr)
-    {
-        tail->next = newNode;
+        head = nullptr;
+        tail = nullptr;
+        delete head;
     }
     else
     {
-        head = newNode;
+        head = head->next;
+        head->prev = nullptr;
     }
-    tail = newNode;
-    ++size;
+    delete temp;
+    size--;
+    return message;
 }
 
-// Print all messages
+// good
+void List::add(Message *message)
+{
+    Node *newNode = new Node(message);
+    if (isEmpty())
+    {
+        head = tail = newNode;
+    }
+    else
+    {
+        tail->next = newNode;
+        newNode->prev = tail;
+        tail = newNode;
+    }
+    size++;
+}
+
+// good
 void List::print() const
 {
     Node *current = head;
@@ -91,81 +80,78 @@ void List::print() const
     }
 }
 
-void List::getMessagesWith(const std::string &id, List &outputList) const
+// Accessing info form linked list
+
+// good
+void List::getMessagesWith(const std::string &id, List &outputList)
 {
     Node *current = head;
     while (current != nullptr)
     {
         if (current->data->getSender() == id || current->data->getReceiver() == id)
         {
-            outputList.add(new Message(*(current->data))); // Add a copy of the Message
+            outputList.add(current->data);
         }
         current = current->next;
     }
 }
 
-void List::getMessagesWith(const std::string &id1, const std::string &id2, List &outputList) const
+// good
+void List::getMessagesWith(const std::string &id1, const std::string &id2, List &outputList)
 {
     Node *current = head;
     while (current != nullptr)
     {
-        bool isSenderReceiverMatch = (current->data->getSender() == id1 && current->data->getReceiver() == id2);
-        bool isReceiverSenderMatch = (current->data->getSender() == id2 && current->data->getReceiver() == id1);
-
-        if (isSenderReceiverMatch || isReceiverSenderMatch)
+        if ((current->data->getSender() == id1 && current->data->getReceiver() == id2) ||
+            (current->data->getSender() == id2 && current->data->getReceiver() == id1))
         {
-            outputList.add(new Message(*(current->data))); // Add a copy of the Message
+            outputList.add(current->data);
         }
         current = current->next;
     }
 }
 
+// good
 void List::removeMessagesWith(const std::string &id, List &outputList)
 {
     Node *current = head;
-    Node *prev = nullptr;
-
     while (current != nullptr)
     {
-        bool isSenderOrReceiverMatch = (current->data->getSender() == id || current->data->getReceiver() == id);
+        Node *nextNode = current->next;
 
-        if (isSenderOrReceiverMatch)
+        if (current->data->getSender() == id || current->data->getReceiver() == id)
         {
-            // Save the message to be removed
-            Message *toRemove = current->data;
+            outputList.add(current->data);
 
-            // Re-link nodes
-            if (prev == nullptr)
+            if (current == head)
             {
-                head = current->next;
+                head = nextNode;
+                if (head)
+                    head->prev = nullptr;
             }
             else
             {
-                prev->next = current->next;
+                current->prev->next = nextNode;
             }
 
-            // If we're at the end, update tail
-            if (tail == current)
+            if (current == tail)
             {
-                tail = prev;
+                tail = current->prev;
+                if (tail)
+                    tail->next = nullptr;
+            }
+            else
+            {
+                nextNode->prev = current->prev;
             }
 
-            Node *next = current->next;
-            delete current; // Delete the current node
-            current = next; // Move to next node
+            delete current;
             size--;
+        }
 
-            outputList.add(toRemove); // Add the message to the outputList
-        }
-        else
-        {
-            prev = current;
-            current = current->next;
-        }
+        current = nextNode;
     }
 
-    if (size == 0)
-    {
-        tail = nullptr; // Ensure the tail is nullptr if list is empty
-    }
+    if (head == nullptr)
+        tail = nullptr;
 }

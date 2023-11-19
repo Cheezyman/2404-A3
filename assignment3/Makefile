@@ -1,50 +1,30 @@
-objects = main.o Control.o View.o Network.o Entity.o List.o Message.o CellPhone.o Tower.o Location.o
-testobjects = test.o TestControl.o Tester.o View.o Network.o Entity.o List.o Message.o CellPhone.o Tower.o Location.o
+objects = CellPhone.o Entity.o Tower.o Location.o Message.o List.o Tester.o
 
-all: a3 test
-
-a3: $(objects)
-	g++ -o a3 $(objects) 
-
-test: $(testobjects)
-	g++ -o test $(testobjects)
-
-test.o: test.cc TestControl.h
-	g++ -c test.cc
-
-main.o: main.cc Control.h 
-	g++ -c main.cc 
-
-Control.o: Control.h Control.cc
-	g++ -c Control.cc
+all: test
 	
-View.o: View.cc View.h
-	g++ -c View.cc
+test: test.cc $(objects)
+	g++ -o test test.cc $(objects)
 	
-Network.o: Network.cc Network.h
-	g++ -c Network.cc
+CellPhone.o:	CellPhone.h CellPhone.cc
+	g++ -c CellPhone.cc
 
-Entity.o: Entity.cc Entity.h
+Entity.o:	Entity.h Entity.cc
 	g++ -c Entity.cc
 
-List.o: List.h List.cc
-	g++ -c List.cc
-
-Message.o: Message.h Message.cc
-	g++ -c Message.cc
-
-	
-CellPhone.o: CellPhone.cc CellPhone.h Entity.h
-	g++ -c CellPhone.cc 
-
-Tower.o: Tower.cc Tower.h 
+Tower.o:	Tower.h Tower.cc
 	g++ -c Tower.cc
 
-Location.o: Location.cc Location.h
-	g++ -c Location.cc
-	
-Tester.o: Tester.cc Tester.h
-	g++ -c Tester.cc
+List.o:	List.h List.cc
+	g++ -c List.cc
 
+Message.o:	Message.h Message.cc
+	g++ -c Message.cc
+
+Location.o:	Location.h Location.cc
+	g++ -c Location.cc
+
+Tester.o:	Tester.h Tester.cc
+	g++ -c Tester.cc
+	
 clean:
-	rm -f a3 *.o
+	rm -f test *.o
