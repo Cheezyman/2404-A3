@@ -1,0 +1,33 @@
+Name: Thomas Cheesman
+Student ID: 101250237
+
+This project simulates a basic cell phone network. It includes classes for cell phones, towers, messages, and a network to manage interactions between them. The simulation handles message routing, tracking cell phone locations, and managing message histories.
+
+Project Structure
+The project is divided into several components:
+
+CellPhone: Represents a cell phone with a unique ID, location, and message history.
+Tower: Represents a network tower with a unique ID, location, and message history.
+Message: Represents a message with a sender, receiver, and the message content.
+Network: Manages the cell phones and towers, routes messages, and handles cell phone movements.
+Entity: A base class for CellPhone and Tower, containing common attributes and methods.
+List: A custom list implementation for managing message histories.
+Location: Represents a geographical location.
+Key Features
+Message Routing: The network routes messages between cell phones via the closest towers.
+Location Tracking: Each cell phone and tower has a location, which is used for routing messages.
+Message History: Both cell phones and towers maintain a history of messages.
+Dynamic ID Assignment: Cell phones and towers have unique IDs, which are dynamically assigned.
+Compilation and Execution
+To compile and run the project, ensure you have a C++ compiler installed. Navigate to the project directory and use the following commands:
+make
+./a3
+
+Usage
+After running the simulation, you can:
+
+Add cell phones and towers to the network.
+Move cell phones to different locations.
+Send messages between cell phones.
+View message histories of cell phones and towers.
+Reset IDs of cell phones and towers.
