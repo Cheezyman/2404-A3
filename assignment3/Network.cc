@@ -101,10 +101,10 @@ void Network::getMessagesWith(const std::string &id1, const std::string &id2, Li
 {
     for (auto phone : cellPhones)
     {
-        if (phone->equals(id1) || phone->equals(id2))
+        if (phone->equals(id1) || phone->equals(id1))
         {
-            phone->getMessagesWith(id1, outputList);
-            phone->getMessagesWith(id2, outputList);
+            phone->getMessagesWith(id1, id2, outputList);
+            break;
         }
     }
 }

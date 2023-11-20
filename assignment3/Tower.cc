@@ -20,5 +20,5 @@ void Tower::print() const
     // Prints information about the Tower, specifically.
     std::cout << "Tower - ID: " << id << ", Location: ";
     getLocation().print();
-    std::cout << std::endl;
+    std::cout << "Number of Messages: " << getNumMessages() << std::endl;
 }

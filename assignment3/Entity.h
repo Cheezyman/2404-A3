@@ -7,21 +7,21 @@
 
 class Entity
 {
-private:  
+private:
     List messageHistory; // List of pointers to messages
 
 protected:
-    std::string id; // Unique identifier for the entity
-    Location location;  // Location of the entity
+    std::string id;    // Unique identifier for the entity
+    Location location; // Location of the entity
 
 public:
     Entity(char code, int num, Location loc);
-    virtual ~Entity() {} // Include a virtual destructor for proper cleanup
-    List *getMessageHistory(); // Get the message history
-    Location getLocation() const;     // Get the entity's location
+    ~Entity();
+    List *getMessageHistory();    // Get the message history
+    Location getLocation() const; // Get the entity's location
 
     // Mutators
-    void addMessage(const Message&); // Add a message to the message history
+    void addMessage(const Message &); // Add a message to the message history
 
     // Other functions
     int getNumMessages() const;                    // Get the number of messages

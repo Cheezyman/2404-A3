@@ -33,7 +33,7 @@ List.o: List.h List.cc
 Message.o: Message.h Message.cc
 	g++ -c Message.cc
 
-	
+
 CellPhone.o: CellPhone.cc CellPhone.h Entity.h
 	g++ -c CellPhone.cc 
 

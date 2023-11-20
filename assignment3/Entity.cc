@@ -11,6 +11,16 @@ List *Entity::getMessageHistory()
     return &messageHistory;
 }
 
+Entity::~Entity()
+{
+    // deconstructor
+    while (!messageHistory.isEmpty())
+    {
+        Message *message = messageHistory.removeFirst();
+        delete message;
+    }
+}
+
 // Accessor for the entity's location
 Location Entity::getLocation() const
 {

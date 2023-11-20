@@ -29,11 +29,11 @@ public:
     // Function to get messages with a certain id
     void getMessagesWith(const std::string &id, List &messages);
 
+    // Function to get messages with a certain id
+    void getMessagesWith(const std::string &id1, const std::string &id2, List &messages);
+
     // Override the print function
     void print() const;
-
-    // Destructor
-    ~CellPhone();
 };
 
 #endif // CELLPHONE_H

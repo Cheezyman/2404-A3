@@ -23,25 +23,26 @@ int List::getSize() const
 
 Message *List::removeFirst()
 {
-    if (size = 0)
+    if (size == 0)
     {
         return nullptr;
     }
+
     Node *temp = head;
     Message *message = temp->data;
 
-    if (head->next == nullptr)
+    if (head->next == nullptr) // List has only one element
     {
         head = nullptr;
-        tail = nullptr;
-        delete head;
+        tail = nullptr; // Ensure tail is also set to nullptr
     }
     else
     {
         head = head->next;
         head->prev = nullptr;
     }
-    delete temp;
+
+    delete temp; // Delete the original head node
     size--;
     return message;
 }
